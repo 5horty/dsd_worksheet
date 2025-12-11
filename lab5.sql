@@ -1,15 +1,30 @@
---q1--
+--q1--db-working
+SELECT 
+    m.movie_id AS "Movie ID",
+    m.title AS movie_title,
+    l.name AS "language",
+    c.name AS "Category"
+FROM 
+    movie m
+    JOIN language l ON m.language_id = l.language_id
+    JOIN movie_category mc ON m.movie_id = mc.movie_id
+    JOIN category c ON mc.category_id = c.category_id
+WHERE 
+    m.title = 'ALADDIN CALENDAR';
 
+--q1--non-db
 SELECT
-    movie_id AS "Movie ID",
-    movie_title AS "movie_title",
-    movie_lang AS "LANGUAGE",
-    cat_name AS "Category"
+  movie.movie_id AS "Movie ID",
+  movie.movie_title AS Movie_Title,
+  movie.movie_lang AS "LANGUAGE",
+  category.cat_name AS "Category"
 FROM
-    movie
-    INNER JOIN category ON movie.movie_id = category.movie_id
+  movie
+  INNER JOIN category ON movie.movie_id = category.movie_id
 WHERE
-    movie_title = 'ALADDIN CALENDAR';
+  movie_title = "ALADDIN CALENDAR";
+
+
 
 
 --q3
@@ -63,9 +78,9 @@ ORDER BY m.release_year ASC;
 
 --q6
 SELECT 
-    l.name AS language,
-    c.name AS category,
-    COUNT(m.movie_id) AS movie_count
+    c.name AS "Category",
+    l.name AS "Orignal Language",  
+    COUNT(m.movie_id) AS "number of movies"
 FROM 
     MOVIE m
     JOIN LANGUAGE l ON m.original_language_id = l.language_id
@@ -75,5 +90,5 @@ GROUP BY
     l.name, 
     c.name
 ORDER BY 
-    l.name ASC, 
-    c.name ASC;
+    c.name ASC, 
+    l.name ASC;

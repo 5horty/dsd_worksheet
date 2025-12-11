@@ -99,8 +99,8 @@ ORDER BY
 
 ----chal--
 SELECT 
-    CONCAT(c.first_name, ' ', c.last_name) AS customer_name,
-    c.email
+    CONCAT(c.first_name, ' ', c.last_name) AS "customer name",
+    c.email as "Email"
 FROM 
     customer c
 WHERE 
@@ -137,5 +137,8 @@ WHERE
 ORDER BY 
     c.first_name, 
     c.last_name;
+
+
+
 
 

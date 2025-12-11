@@ -31,7 +31,7 @@ psql -h localhost -p 5432 -U cashier -d movie_rental
 INSERT INTO rental (rental_id, rental_date, inventory_id, customer_id, return_date,     staff_id, last_update)
 VALUES (17000, CURRENT_DATE,  1,  1, NULL, 1, CURRENT_TIMESTAMP);
 
--- see if the insert was made (you should have the today date)
+-- see if the insert was made
 SELECT * FROM rental WHERE rental_id = 17000;
 
 --delete--
