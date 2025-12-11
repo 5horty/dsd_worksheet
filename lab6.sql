@@ -96,3 +96,46 @@ WHERE
 ORDER BY 
     co.country,
     ci.city;
+
+----chal--
+SELECT 
+    CONCAT(c.first_name, ' ', c.last_name) AS customer_name,
+    c.email
+FROM 
+    customer c
+WHERE 
+    c.customer_id IN (
+
+    --query to find customers inventory belonging to acton movies
+    SELECT 
+        r.customer_id
+    FROM 
+        rental r
+    WHERE 
+        r.inventory_id IN (
+
+        --query to find inventory of action movies
+        SELECT 
+            i.inventory_id
+        FROM 
+            inventory i
+        WHERE 
+            i.movie_id IN (
+
+            --query to find movies in action category
+            SELECT 
+                mc.movie_id
+            FROM 
+                movie_category mc
+            JOIN 
+                category cat USING (category_id)
+            WHERE 
+                cat.name = 'Action'
+        )
+    )
+)
+ORDER BY 
+    c.first_name, 
+    c.last_name;
+
+
